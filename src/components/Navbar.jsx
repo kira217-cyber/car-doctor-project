@@ -73,7 +73,7 @@ const Navbar = () => {
                   alt="user-logo"
                 />
               </li>
-              <li onClick={() => signOut()}>Log Out</li>
+              <li className="btn" onClick={() => signOut()}>Log Out</li>
             </>
           ) : (
             <>
