@@ -23,6 +23,9 @@ const Navbar = () => {
       <li>
         <Link href={"/contact"}>Contact</Link>
       </li>
+      <li>
+        <Link href={"/my-bookings"}>My Bookings</Link>
+      </li>
     </>
   );
 
@@ -55,7 +58,12 @@ const Navbar = () => {
           </ul>
         </div>
         <Link href="/" className="text-xl">
-          <Image src="/assets/logo.svg" width={70} height={70}></Image>
+          <Image
+            src="/assets/logo.svg"
+            alt="navbar-logo"
+            width={70}
+            height={70}
+          ></Image>
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -73,7 +81,9 @@ const Navbar = () => {
                   alt="user-logo"
                 />
               </li>
-              <li className="btn" onClick={() => signOut()}>Log Out</li>
+              <li className="btn" onClick={() => signOut()}>
+                Log Out
+              </li>
             </>
           ) : (
             <>

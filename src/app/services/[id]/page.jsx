@@ -1,16 +1,16 @@
 import React from "react";
 import Image from "next/image";
-import dbConnect, { collectionNames } from "@/lib/dbConnect";
-import { ObjectId } from "mongodb";
 import banner from "../../../../public/assets/images/banner/1.jpg";
+import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
 const page = async ({ params }) => {
-  const p = params;
-  const servicesCollection = dbConnect(collectionNames.servicesCollection);
-
-  const service = await servicesCollection.findOne({ _id: new ObjectId(p.id) });
+  const p = await params;
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/service/${p.id}`
+  );
+  const service = await res.json();
 
   return (
     <div className="px-4 md:px-10 py-8 max-w-7xl mx-auto">
@@ -141,9 +141,11 @@ const page = async ({ params }) => {
           {/* Price Box */}
           <div className="bg-white shadow p-4 rounded text-center">
             <p className="text-lg font-bold mb-2">Price: ${service.price}</p>
-            <button className="bg-orange-500 text-white w-full py-2 rounded font-semibold hover:bg-orange-600 transition">
-              Proceed Checkout
-            </button>
+            <Link href={`/checkout/${service._id}`}>
+              <button className="bg-orange-500 text-white w-full py-2 rounded font-semibold hover:bg-orange-600 transition">
+                Proceed Checkout
+              </button>
+            </Link>
           </div>
         </div>
       </div>
